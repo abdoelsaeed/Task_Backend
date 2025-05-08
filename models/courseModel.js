@@ -20,11 +20,9 @@ const courseSchema = new mongoose.Schema({
     },
     startDate: {
         type: Date,
-        required: [true, 'A course must have a start date']
     },
     endDate: {
         type: Date,
-        required: [true, 'A course must have an end date'],
         validate: {
             validator: function(val) {
                 return val > this.startDate;
@@ -36,21 +34,13 @@ const courseSchema = new mongoose.Schema({
         type: Number,
         required: [true, 'A course must have a price'],
         min: [0, 'Price must be greater than or equal to 0']
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        select: false
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now
     }
 }, {
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
-});
-
+    toObject: { virtuals: true },
+},
+{timestamps: true}
+);
 // Update the updatedAt timestamp before saving
 courseSchema.pre('save', function(next) {
     this.updatedAt = Date.now();
