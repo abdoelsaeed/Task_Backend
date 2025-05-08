@@ -27,7 +27,7 @@ mongoose
   });
 
 // Routes
-app.use('/', coursesRouter);
+app.use('/api', coursesRouter);
 
 // Not founded route handler
 app.all('*', (req, res, next) => {
