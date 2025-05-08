@@ -47,9 +47,4 @@ courseSchema.pre('save', function(next) {
     next();
 });
 
-// Virtual property for course duration in days
-courseSchema.virtual('duration').get(function() {
-    return Math.ceil((this.endDate - this.startDate) / (1000 * 60 * 60 * 24));
-});
-
 module.exports = mongoose.model('Course', courseSchema);
