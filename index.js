@@ -28,7 +28,9 @@ mongoose
 
 // Routes
 app.use('/api/courses', coursesRouter);
-
+app.get('/',(res,req)=>{
+  res.send('Welcome to the Course API');
+})
 // Not founded route handler
 app.all('*', (req, res, next) => {
   next(new AppError(`Cannot find ${req.originalUrl} on this server`, 404));
